@@ -13,13 +13,16 @@ type Config struct {
 	ParticleImage            string
 	Debug                    bool
 	InitNumParticles         int
-	RandomSpawn              bool
+	RandomSpawnX             bool
+	RandomSpawnY             bool
 	RandomSpawnColor		 bool
 	SpawnX, SpawnY           int
 	SpawnRate                float64
 	LifeSpan 				 int
 	SpeedMultiplier          float64
 	ParticleGravity 		 float64
+	MaxParticles 			 int
+	ToggleRespawn 			 bool
 }
 
 var General Config

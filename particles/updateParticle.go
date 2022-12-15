@@ -9,6 +9,7 @@ func (p *Particle) updateParticle() {
 	if config.General.ParticleGravity == 0 {
 		p.PositionY += p.SpeedY
 	} else {
-		p.PositionY *= config.General.ParticleGravity
+		p.PositionY += p.SpeedY
+		p.SpeedY *= config.General.ParticleGravity
 	}
 }

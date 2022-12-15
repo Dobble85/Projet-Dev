@@ -11,16 +11,18 @@ func (s *System) CreateParticle() {
 	random := rand.New(rand.NewSource(time.Now().UnixNano()))
 	var ParticleX int
 	var ParticleY int
-	if config.General.RandomSpawn {
+	if config.General.RandomSpawnX {
 		ParticleX = random.Int() % config.General.WindowSizeX
+	} else {
+		ParticleX = config.General.SpawnX
+	}
+	if config.General.RandomSpawnY {
 		ParticleY = random.Int() % config.General.WindowSizeY
 	} else {
 		ParticleY = config.General.SpawnY
-		ParticleX = config.General.SpawnX
 	}
 
 	// SPEED
-	random = rand.New(rand.NewSource(time.Now().UnixNano()))
 	var ParticleSpeedX float64 = random.Float64() * config.General.SpeedMultiplier
 	var ParticleSpeedY float64 = random.Float64() * config.General.SpeedMultiplier
 
@@ -32,7 +34,6 @@ func (s *System) CreateParticle() {
 	}
 
 	// COLOR
-	random = rand.New(rand.NewSource(time.Now().UnixNano()))
 	var ParticleColorR float64 = 0.4
 	var ParticleColorG float64 = 0.6
 	var ParticleColorB float64 = 1

@@ -12,18 +12,21 @@ import (
 // projet.
 // C'est à vous de développer cette fonction.
 func (s *System) Update() {
+	l := s.Content
 	s.Tick++
-	if config.General.SpawnRate < 1 && config.General.SpawnRate > 0 {
-		if s.Tick % int(1 / config.General.SpawnRate) == 0 {
-			s.CreateParticle()
-		}
-	} else {
-		for i := 0; i < int(config.General.SpawnRate); i++ {
-			s.CreateParticle()
+	if (l.Len() < config.General.MaxParticles || config.General.MaxParticles == -1) {
+		if config.General.SpawnRate < 1 && config.General.SpawnRate > 0 {
+			if s.Tick % int(1 / config.General.SpawnRate) == 0 {
+				s.CreateParticle()
+			}
+		} else {
+			for i := 0; i < int(config.General.SpawnRate) && (l.Len() < config.General.MaxParticles || config.General.MaxParticles == -1); i++ {
+				s.CreateParticle()
+			}
 		}
 	}
 
-	l := s.Content
+	
 	if s.Tick % 60 == 0 { ebiten.SetWindowTitle("Project particles - Paricules: " + fmt.Sprint(l.Len()) + " - TPS: " + fmt.Sprint(int(ebiten.CurrentTPS()))) }
 
 	for e := l.Front(); e != nil; e = e.Next() {
@@ -50,7 +53,12 @@ func (s *System) Update() {
 	for e := l.Front(); e != nil; e = e.Next() {
 		p := e.Value.(*Particle)
 		if p.KillState == 1 {
-			l.Remove(e)
+			if config.General.ToggleRespawn {
+				p.respawn()
+			} else {
+				l.Remove(e)
+			}
+			
 		}
 	}
 }
