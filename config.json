@@ -4,16 +4,23 @@
     "WindowSizeY": 600,
 	"ParticleImage": "assets/particle.png",
 	"Debug": false,
+
 	"InitNumParticles": 0,
+	"SpawnRate": 100,
+
 	"RandomSpawnX": true,
 	"RandomSpawnY": true,
-	"RandomSpawnColor": true,
 	"SpawnX": 400,
 	"SpawnY": 300,
-	"SpawnRate": 100,
-	"LifeSpan": 0,
-	"SpeedMultiplier": 1,
-	"ParticleGravity": 0,
+
+	"RandomSpawnColor": true,
+	"RandomSpawnOpacity": false,
+	"ToggleVanish": true,
+
+	"LifeSpan": 300,
 	"MaxParticles": 2000,
-	"ToggleRespawn": true
+	"ToggleRespawn": true,
+
+	"SpeedMultiplier": 1,
+	"ParticleGravity": 0
 }

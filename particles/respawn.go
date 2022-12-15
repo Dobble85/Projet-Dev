@@ -23,11 +23,22 @@ func (p *Particle) respawn() {
 		ParticleY = config.General.SpawnY
 	}
 
+	// SPEED
+	var ParticleSpeedX float64 = random.Float64() * config.General.SpeedMultiplier
+	var ParticleSpeedY float64 = random.Float64() * config.General.SpeedMultiplier
+
+	if random.Int() % 2 == 0 {
+		ParticleSpeedX = -ParticleSpeedX
+	}
+	if random.Int() % 2 == 0 {
+		ParticleSpeedY = -ParticleSpeedY
+	}
+
 	p.PositionX = float64(ParticleX)
 	p.PositionY = float64(ParticleY)
 	p.Opacity = float64(random.Int() % 100) / 100
 	p.KillState = 0
 	p.LifeSpan = config.General.LifeSpan
-	p.SpeedX = random.Float64() * config.General.SpeedMultiplier
-	p.SpeedY = random.Float64() * config.General.SpeedMultiplier
+	p.SpeedX = ParticleSpeedX
+	p.SpeedY = ParticleSpeedY
 }

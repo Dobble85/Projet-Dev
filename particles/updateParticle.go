@@ -12,4 +12,8 @@ func (p *Particle) updateParticle() {
 		p.PositionY += p.SpeedY
 		p.SpeedY *= config.General.ParticleGravity
 	}
+
+	if config.General.ToggleVanish {
+		p.Opacity = float64(p.LifeSpan) / float64(config.General.LifeSpan)
+	}
 }

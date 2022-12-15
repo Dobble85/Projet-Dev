@@ -43,6 +43,11 @@ func (s *System) CreateParticle() {
 		ParticleColorB = float64(random.Int() % 100) / 100
 	}
 
+	var ParticleOpacity float64 = 1
+	if config.General.RandomSpawnOpacity {
+		ParticleOpacity = float64(random.Int() % 100) / 100
+	}
+
 	// PUSH_FRONT
 	s.Content.PushFront(&Particle{
 		PositionX: float64(ParticleX),
@@ -51,7 +56,7 @@ func (s *System) CreateParticle() {
 		SpeedY: ParticleSpeedY,
 		ScaleX:    1, ScaleY: 1,
 		ColorRed: ParticleColorR, ColorGreen: ParticleColorG, ColorBlue: ParticleColorB,
-		Opacity: float64(random.Int() % 100) / 100, LifeSpan: config.General.LifeSpan,
+		Opacity: ParticleOpacity, LifeSpan: config.General.LifeSpan,
 		KillState: 0,
 	})
 }

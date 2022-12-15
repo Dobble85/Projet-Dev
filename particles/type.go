@@ -8,6 +8,8 @@ import "container/list"
 type System struct {
 	Content *list.List
 	Tick int
+	CursorX int
+	CursorY int
 }
 
 // Particle définit une particule.

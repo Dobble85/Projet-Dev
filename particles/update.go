@@ -14,6 +14,12 @@ import (
 func (s *System) Update() {
 	l := s.Content
 	s.Tick++
+	s.CursorX, s.CursorY = ebiten.CursorPosition()
+	if s.CursorX < 0 { s.CursorX = 0 }
+	if s.CursorY < 0 { s.CursorY = 0 }
+	if s.CursorX > config.General.WindowSizeX { s.CursorX = config.General.WindowSizeX }
+	if s.CursorY > config.General.WindowSizeY { s.CursorY = config.General.WindowSizeY }
+
 	if (l.Len() < config.General.MaxParticles || config.General.MaxParticles == -1) {
 		if config.General.SpawnRate < 1 && config.General.SpawnRate > 0 {
 			if s.Tick % int(1 / config.General.SpawnRate) == 0 {
@@ -27,7 +33,7 @@ func (s *System) Update() {
 	}
 
 	
-	if s.Tick % 60 == 0 { ebiten.SetWindowTitle("Project particles - Paricules: " + fmt.Sprint(l.Len()) + " - TPS: " + fmt.Sprint(int(ebiten.CurrentTPS()))) }
+	if s.Tick % 60 == 0 { ebiten.SetWindowTitle("Project particles - Paricules: " + fmt.Sprint(l.Len()) + " - TPS: " + fmt.Sprint(int(ebiten.CurrentTPS())) + " - " + fmt.Sprint(s.CursorX) + " - " + fmt.Sprint(s.CursorY)) }
 
 	for e := l.Front(); e != nil; e = e.Next() {
 		p := e.Value.(*Particle)
