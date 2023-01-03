@@ -45,28 +45,32 @@ func (s *System) CreateParticle() {
 		ParticleColorB = float64(random.Int() % 100) / 100
 	} else {
 		switch {
-		case config.General.DefaultSpawnColor == "white":
+		case s.ParticleColor == "white":
 			ParticleColorR = 1
 			ParticleColorG = 1
 			ParticleColorB = 1
-		case config.General.DefaultSpawnColor == "red":
+		case s.ParticleColor == "red":
 			ParticleColorR = 1
-		case config.General.DefaultSpawnColor == "blue":
+		case s.ParticleColor == "blue":
 			ParticleColorB = 1
-		case config.General.DefaultSpawnColor == "green":
+		case s.ParticleColor == "green":
 			ParticleColorG = 1
-		case config.General.DefaultSpawnColor == "aqua":
+		case s.ParticleColor == "aqua":
 			ParticleColorG = 1
 			ParticleColorB = 1
-		case config.General.DefaultSpawnColor == "yellow":
+		case s.ParticleColor == "yellow":
 			ParticleColorR = 1
 			ParticleColorG = 1
-		case config.General.DefaultSpawnColor == "magenta":
+		case s.ParticleColor == "magenta":
 			ParticleColorR = 1
 			ParticleColorB = 1
-		case config.General.DefaultSpawnColor == "orange":
+		case s.ParticleColor == "orange":
 			ParticleColorR = 1
 			ParticleColorG = 0.65
+		case s.ParticleColor == "random":
+			ParticleColorR = float64(random.Int() % 100) / 100
+			ParticleColorG = float64(random.Int() % 100) / 100
+			ParticleColorB = float64(random.Int() % 100) / 100
 		}
 	}
 

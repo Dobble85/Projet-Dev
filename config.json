@@ -17,15 +17,15 @@
 	"RotationSpeed": 0.1,
 
 	"RandomSpawnColor": false,
-	"DefaultSpawnColor": "blue",
-	"RandomSpawnOpacity": true,
-	"ToggleVanish": false,
+	"DefaultSpawnColor": "aqua",
+	"RandomSpawnOpacity": false,
+	"ToggleVanish": true,
 
-	"LifeSpan": -1,
-	"MaxParticles": 100000,
+	"LifeSpan": 300,
+	"MaxParticles": 0,
 	"ToggleRespawn": false,
 
-	"SpeedMultiplier": 0.2,
+	"SpeedMultiplier": 0.5,
 	"ParticleGravity": 0,
 
 	"EventOnClick": false
