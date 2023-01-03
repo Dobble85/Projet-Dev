@@ -1,29 +1,32 @@
 {
 	"WindowTitle": "Project particles - Paricules: 0 - TPS: 0",
-	"WindowSizeX": 800,
-    "WindowSizeY": 600,
+	"WindowSizeX": 1920,
+    "WindowSizeY": 1011,
 	"ParticleImage": "assets/particle.png",
 	"Debug": false,
 
 	"InitNumParticles": 0,
-	"SpawnRate": 0,
+	"SpawnRate": 1,
 
-	"RandomSpawnX": false,
-	"RandomSpawnY": false,
-	"SpawnX": 400,
-	"SpawnY": 300,
+	"RandomSpawnX": true,
+	"RandomSpawnY": true,
+	"SpawnX": 960,
+	"SpawnY": 450,
+
+	"ToggleRotation": false,
+	"RotationSpeed": 0.1,
 
 	"RandomSpawnColor": false,
-	"DefaultSpawnColor": "aqua",
-	"RandomSpawnOpacity": false,
-	"ToggleVanish": true,
+	"DefaultSpawnColor": "blue",
+	"RandomSpawnOpacity": true,
+	"ToggleVanish": false,
 
-	"LifeSpan": 300,
-	"MaxParticles": 0,
+	"LifeSpan": -1,
+	"MaxParticles": 100000,
 	"ToggleRespawn": false,
 
-	"SpeedMultiplier": 0.5,
+	"SpeedMultiplier": 0.2,
 	"ParticleGravity": 0,
 
-	"EventOnClick": true
+	"EventOnClick": false
 }

@@ -13,7 +13,14 @@ func (p *Particle) updateParticle() {
 		p.SpeedY *= config.General.ParticleGravity
 	}
 
+	if config.General.ToggleRotation {
+		p.Rotation += config.General.RotationSpeed
+	} else {
+		p.Rotation = 0
+	}
+
 	if config.General.ToggleVanish {
 		p.Opacity = float64(p.LifeSpan) / float64(config.General.LifeSpan)
 	}
+
 }

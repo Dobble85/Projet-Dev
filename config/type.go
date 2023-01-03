@@ -27,6 +27,8 @@ type Config struct {
 	ToggleRespawn 			 bool
 	ToggleVanish			 bool
 	EventOnClick			 bool
+	ToggleRotation           bool
+	RotationSpeed		     float64
 }
 
 var General Config

@@ -22,6 +22,8 @@ func (s *System) CreateParticle() {
 		ParticleY = s.ParticleSpawnY
 	}
 
+	var ParticleRotation float64
+
 	// SPEED
 	var ParticleSpeedX float64 = random.Float64() * config.General.SpeedMultiplier
 	var ParticleSpeedY float64 = random.Float64() * config.General.SpeedMultiplier
@@ -79,7 +81,8 @@ func (s *System) CreateParticle() {
 		PositionY: float64(ParticleY),
 		SpeedX: ParticleSpeedX,
 		SpeedY: ParticleSpeedY,
-		ScaleX:    1, ScaleY: 1,
+		Rotation: ParticleRotation,
+		ScaleX:    0.3, ScaleY: 0.3,
 		ColorRed: ParticleColorR, ColorGreen: ParticleColorG, ColorBlue: ParticleColorB,
 		Opacity: ParticleOpacity, LifeSpan: config.General.LifeSpan,
 		KillState: 0,
