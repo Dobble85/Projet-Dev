@@ -14,12 +14,12 @@ func (s *System) CreateParticle() {
 	if config.General.RandomSpawnX {
 		ParticleX = random.Int() % config.General.WindowSizeX
 	} else {
-		ParticleX = config.General.SpawnX
+		ParticleX = s.ParticleSpawnX
 	}
 	if config.General.RandomSpawnY {
 		ParticleY = random.Int() % config.General.WindowSizeY
 	} else {
-		ParticleY = config.General.SpawnY
+		ParticleY = s.ParticleSpawnY
 	}
 
 	// SPEED
@@ -34,13 +34,38 @@ func (s *System) CreateParticle() {
 	}
 
 	// COLOR
-	var ParticleColorR float64 = 0.4
-	var ParticleColorG float64 = 0.6
-	var ParticleColorB float64 = 1
+	var ParticleColorR float64 = 0
+	var ParticleColorG float64 = 0
+	var ParticleColorB float64 = 0
 	if config.General.RandomSpawnColor {
 		ParticleColorR = float64(random.Int() % 100) / 100
 		ParticleColorG = float64(random.Int() % 100) / 100
 		ParticleColorB = float64(random.Int() % 100) / 100
+	} else {
+		switch {
+		case config.General.DefaultSpawnColor == "white":
+			ParticleColorR = 1
+			ParticleColorG = 1
+			ParticleColorB = 1
+		case config.General.DefaultSpawnColor == "red":
+			ParticleColorR = 1
+		case config.General.DefaultSpawnColor == "blue":
+			ParticleColorB = 1
+		case config.General.DefaultSpawnColor == "green":
+			ParticleColorG = 1
+		case config.General.DefaultSpawnColor == "aqua":
+			ParticleColorG = 1
+			ParticleColorB = 1
+		case config.General.DefaultSpawnColor == "yellow":
+			ParticleColorR = 1
+			ParticleColorG = 1
+		case config.General.DefaultSpawnColor == "magenta":
+			ParticleColorR = 1
+			ParticleColorB = 1
+		case config.General.DefaultSpawnColor == "orange":
+			ParticleColorR = 1
+			ParticleColorG = 0.65
+		}
 	}
 
 	var ParticleOpacity float64 = 1

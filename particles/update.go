@@ -14,11 +14,17 @@ import (
 func (s *System) Update() {
 	l := s.Content
 	s.Tick++
+
 	s.CursorX, s.CursorY = ebiten.CursorPosition()
 	if s.CursorX < 0 { s.CursorX = 0 }
 	if s.CursorY < 0 { s.CursorY = 0 }
 	if s.CursorX > config.General.WindowSizeX { s.CursorX = config.General.WindowSizeX }
 	if s.CursorY > config.General.WindowSizeY { s.CursorY = config.General.WindowSizeY }
+	
+	if config.General.EventOnClick {
+		s.onClick()
+	}
+
 
 	if (l.Len() < config.General.MaxParticles || config.General.MaxParticles == -1) {
 		if config.General.SpawnRate < 1 && config.General.SpawnRate > 0 {

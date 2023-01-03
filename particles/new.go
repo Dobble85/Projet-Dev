@@ -14,6 +14,9 @@ func NewSystem() System {
 	var s System
 	s.Tick = 0
 	s.Content = list.New()
+	s.ParticleSpawnX = config.General.SpawnX
+	s.ParticleSpawnY = config.General.SpawnY
+	s.ParticleColor = config.General.DefaultSpawnColor
 
 	for nbParticles := 0; nbParticles < config.General.InitNumParticles; nbParticles++ {
 		s.CreateParticle()

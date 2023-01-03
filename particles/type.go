@@ -10,6 +10,9 @@ type System struct {
 	Tick int
 	CursorX int
 	CursorY int
+	ParticleSpawnX int
+	ParticleSpawnY int
+	ParticleColor  string
 }
 
 // Particle définit une particule.
