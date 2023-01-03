@@ -36,7 +36,11 @@ func (p *Particle) respawn() {
 
 	p.PositionX = float64(ParticleX)
 	p.PositionY = float64(ParticleY)
-	p.Opacity = float64(random.Int() % 100) / 100
+	if config.General.RandomSpawnOpacity { 
+		p.Opacity = float64(random.Int() % 100) / 100 
+	} else {
+		p.Opacity = 1
+	}
 	p.KillState = 0
 	p.LifeSpan = config.General.LifeSpan
 	p.SpeedX = ParticleSpeedX
