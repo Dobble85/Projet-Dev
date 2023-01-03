@@ -16,13 +16,13 @@
 	"RandomSpawnColor": false,
 	"DefaultSpawnColor": "aqua",
 	"RandomSpawnOpacity": false,
-	"ToggleVanish": true,
+	"ToggleVanish": false,
 
-	"LifeSpan": 300,
-	"MaxParticles": 0,
+	"LifeSpan": -1,
+	"MaxParticles": -1,
 	"ToggleRespawn": false,
 
-	"SpeedMultiplier": 0.5,
+	"SpeedMultiplier": 1,
 	"ParticleGravity": 0,
 
 	"EventOnClick": true

@@ -9,10 +9,14 @@ func (s *System) onClick() {
 	if inpututil.MouseButtonPressDuration(ebiten.MouseButtonLeft) > 0 {
 		s.ParticleSpawnX = s.CursorX
 		s.ParticleSpawnY = s.CursorY
+		s.ParticleColor = "aqua"
 		s.CreateParticle()
 	}
 
 	if inpututil.MouseButtonPressDuration(ebiten.MouseButtonRight) > 0 {
-
+		s.ParticleSpawnX = s.CursorX
+		s.ParticleSpawnY = s.CursorY
+		s.ParticleColor = "random"
+		s.CreateParticle()
 	}
 }
