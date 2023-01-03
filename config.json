@@ -5,22 +5,22 @@
 	"ParticleImage": "assets/particle.png",
 	"Debug": false,
 
-	"InitNumParticles": 0,
+	"InitNumParticles": 100000,
 	"SpawnRate": 0,
 
-	"RandomSpawnX": false,
-	"RandomSpawnY": false,
+	"RandomSpawnX": true,
+	"RandomSpawnY": true,
 	"SpawnX": 400,
 	"SpawnY": 300,
 
 	"RandomSpawnColor": false,
-	"DefaultSpawnColor": "aqua",
+	"DefaultSpawnColor": "blue",
 	"RandomSpawnOpacity": false,
 	"ToggleVanish": false,
 
 	"LifeSpan": -1,
-	"MaxParticles": -1,
-	"ToggleRespawn": false,
+	"MaxParticles": 100000,
+	"ToggleRespawn": true,
 
 	"SpeedMultiplier": 1,
 	"ParticleGravity": 0,
