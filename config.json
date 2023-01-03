@@ -25,5 +25,5 @@
 	"SpeedMultiplier": 1,
 	"ParticleGravity": 0,
 
-	"EventOnClick": true
+	"EventOnClick": false
 }
