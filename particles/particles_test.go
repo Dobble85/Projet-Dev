@@ -32,7 +32,9 @@ func testCreateParticle(t *testing.T) {
 		t.Error("Init num particles should be ", config.General.InitNumParticles+1)
 	}
 
-	particle := s.Content.Back()
+	particle := s.Content.Back().Value.(*Particle)
 
-	if (particle.PositionX!= config.General.SpawnX || particle.PositionY!= config.General.SpawnY) && config.General.Ran
+	if (int(particle.PositionX) != config.General.SpawnX && config.General.RandomSpawnX) || (int(particle.PositionY) != config.General.SpawnY && config.General.RandomSpawnY) {
+		t.Error("Particle spawn should be ", config.General.SpawnX, config.General.SpawnY, "when random spawn is true")
+	}
 }
