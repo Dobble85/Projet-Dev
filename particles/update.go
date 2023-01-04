@@ -38,7 +38,7 @@ func (s *System) Update() {
 		}
 	}
 
-	if s.Tick % 60 == 0 { ebiten.SetWindowTitle("Project particles - Paricules: " + fmt.Sprint(l.Len()) + " - TPS: " + fmt.Sprint(int(ebiten.CurrentTPS()))) }
+	if s.Tick % 60 == 0 { ebiten.SetWindowTitle("Project particles - Particules: " + fmt.Sprint(l.Len()) + " - TPS: " + fmt.Sprint(int(ebiten.CurrentTPS()))) }
 
 	for e := l.Front(); e != nil; e = e.Next() {
 		p := e.Value.(*Particle)

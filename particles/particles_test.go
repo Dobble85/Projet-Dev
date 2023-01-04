@@ -35,6 +35,36 @@ func testCreateParticle(t *testing.T) {
 	particle := s.Content.Back().Value.(*Particle)
 
 	if (int(particle.PositionX) != config.General.SpawnX && config.General.RandomSpawnX) || (int(particle.PositionY) != config.General.SpawnY && config.General.RandomSpawnY) {
-		t.Error("Particle spawn should be ", config.General.SpawnX, config.General.SpawnY, "when random spawn is true")
+		t.Error("Particle spawn should be ", config.General.SpawnX, config.General.SpawnY, "when random spawn position is true")
+	}
+
+	if particle.Opacity != 1 && !config.General.RandomSpawnOpacity {
+		t.Error("Particle spawn opacity should be ", 1, "when random spawn opacity is false")
+	}
+
+	if particle.LifeSpan != config.General.LifeSpan {
+		t.Error("Particle life span should be ", config.General.LifeSpan)
 	}
 }
+
+func testUpdateParticle(t *testing.T) {
+	s := NewSystem()
+    s.CreateParticle()
+	p := s.Content.Back().Value.(*Particle)
+
+    p.SpeedX = 1
+	p.SpeedY = 1
+	p.PositionX = 10
+	p.PositionY = 10
+
+	p.updateParticle()
+	if p.PositionX!= 11 || p.PositionY!= 11 {
+		t.Error("Particle position should be ", 11)
+	}
+
+	p.hideParticle()
+	if p.Opacity != 0 {
+		t.Error("Particle opacity should be ", 0)
+	}
+}
+
