@@ -8,87 +8,93 @@ import (
 
 func (s *System) CreateParticle() {
 	// POSITION
+
+	// Créer une variable "random" pour définir de façon aléatoire la position de la particule
 	random := rand.New(rand.NewSource(time.Now().UnixNano()))
+
+	// Définir des variables pour pouvoir définir si la position des particules en X et Y est aléatoire
 	var ParticleX int
 	var ParticleY int
+
+	// Si la génération aléatoire en X est activé, alors assigner un nombre aléatoire qui ne dépasse pas la taille de l'écran à la variable "ParticleX", sinon, assigner "ParticleSpawnX" à "ParticleX"
 	if config.General.RandomSpawnX {
 		ParticleX = random.Int() % config.General.WindowSizeX
 	} else {
-		ParticleX = s.ParticleSpawnX
+		// Faire en sorte que quand on rentre une coordonné plus grande que la taille de l'écran, elle soit automatiquement réduite à la limite de la taille de l'écran
+		if config.General.SpawnX > config.General.WindowSizeX {
+			ParticleX = config.General.WindowSizeX
+		} else {
+			ParticleX = config.General.SpawnX
+		}
+
+		if config.General.SpawnX < 0 {
+			ParticleX = 0
+		}
 	}
+
+	// Même chose pour "ParticleY"
 	if config.General.RandomSpawnY {
 		ParticleY = random.Int() % config.General.WindowSizeY
 	} else {
-		ParticleY = s.ParticleSpawnY
+		if config.General.SpawnY > config.General.WindowSizeY {
+			ParticleY = config.General.WindowSizeY
+		} else {
+			ParticleY = config.General.SpawnY
+		}
+
+		if config.General.SpawnY < 0 {
+			ParticleY = 0
+		}
 	}
 
 	var ParticleRotation float64
 
 	// SPEED
-	var ParticleSpeedX float64 = random.Float64() * config.General.SpeedMultiplier
-	var ParticleSpeedY float64 = random.Float64() * config.General.SpeedMultiplier
+
+	// Définir des varaible pour pouvoir faire en sorte que la vitesse des particules soit aléatoire
+	var ParticleSpeedX float64 = random.Float64()
+	var ParticleSpeedY float64 = random.Float64()
 
 	if random.Int() % 2 == 0 {
 		ParticleSpeedX = -ParticleSpeedX
 	}
+
 	if random.Int() % 2 == 0 {
 		ParticleSpeedY = -ParticleSpeedY
 	}
 
 	// COLOR
-	var ParticleColorR float64 = 0
-	var ParticleColorG float64 = 0
-	var ParticleColorB float64 = 0
-	if config.General.RandomSpawnColor {
-		ParticleColorR = float64(random.Int() % 100) / 100
-		ParticleColorG = float64(random.Int() % 100) / 100
-		ParticleColorB = float64(random.Int() % 100) / 100
-	} else {
-		switch {
-		case s.ParticleColor == "white":
-			ParticleColorR = 1
-			ParticleColorG = 1
-			ParticleColorB = 1
-		case s.ParticleColor == "red":
-			ParticleColorR = 1
-		case s.ParticleColor == "blue":
-			ParticleColorB = 1
-		case s.ParticleColor == "green":
-			ParticleColorG = 1
-		case s.ParticleColor == "aqua":
-			ParticleColorG = 1
-			ParticleColorB = 1
-		case s.ParticleColor == "yellow":
-			ParticleColorR = 1
-			ParticleColorG = 1
-		case s.ParticleColor == "magenta":
-			ParticleColorR = 1
-			ParticleColorB = 1
-		case s.ParticleColor == "orange":
-			ParticleColorR = 1
-			ParticleColorG = 0.65
-		case s.ParticleColor == "random":
-			ParticleColorR = float64(random.Int() % 100) / 100
-			ParticleColorG = float64(random.Int() % 100) / 100
-			ParticleColorB = float64(random.Int() % 100) / 100
-		}
-	}
+
+	// La couleur de base de la particule est blanche
+	var ParticleColorR float64 = 1
+	var ParticleColorG float64 = 1
+	var ParticleColorB float64 = 1
 
 	var ParticleOpacity float64 = 1
-	if config.General.RandomSpawnOpacity {
-		ParticleOpacity = float64(random.Int() % 100) / 100
-	}
 
 	// PUSH_FRONT
+
 	s.Content.PushFront(&Particle{
+
+		// Position en X et Y de la particule
 		PositionX: float64(ParticleX),
 		PositionY: float64(ParticleY),
+
+		// Vitesse en X et Y
 		SpeedX: ParticleSpeedX,
 		SpeedY: ParticleSpeedY,
+
+		// Angle de rotation
 		Rotation: ParticleRotation,
-		ScaleX:    0.3, ScaleY: 0.3,
+
+		// Taille : 1 est la taille de base
+		ScaleX: 1, 
+		ScaleY: 1,
+
 		ColorRed: ParticleColorR, ColorGreen: ParticleColorG, ColorBlue: ParticleColorB,
-		Opacity: ParticleOpacity, LifeSpan: config.General.LifeSpan,
+		Opacity: ParticleOpacity,
+
+		// Etat de la particule : 0 -> Vivante | 1 -> Morte
 		KillState: 0,
 	})
 }

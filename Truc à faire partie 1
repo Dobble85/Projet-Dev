@@ -1,0 +1,18 @@
+PARTIE 1
+
+Particule avec :
+	-Vitesse initiale (n'évolue pas au fil du temps)
+	-Position initiale (évolue au fil du temps en fonction de la vitesse)
+	-Taille, rotation, couleur, transparence (n'évoluent pas au fil du temps)
+	
+PART. 1
+
+Dans la fonction "NewSystem()" du fichier "new.go", créer des particules avec une position initiale.
+
+-Nombre de particule = "InitNumParticles" défini dans le fichier "config.json", ("config.General.InitNumParticles")
+
+-Position soit aléatoire, soit la même pour toutes les particles en fonction de "RandomSpawn" dans "config.json", ("config.General.RandomSpawn")
+
+-Si position aléatoire, utiliser math/rand pour la définir (toujours rester dans l'écran)
+
+-Si position pas aléatoire, elle est défini par "SpawnX" et SpawnY" dans "config.json" (toujours rester dans l'écran)

@@ -15,20 +15,9 @@ type Config struct {
 	InitNumParticles         int
 	RandomSpawnX             bool
 	RandomSpawnY             bool
-	RandomSpawnColor		 bool
-	DefaultSpawnColor		 string
-	RandomSpawnOpacity		 bool
 	SpawnX, SpawnY           int
 	SpawnRate                float64
-	LifeSpan 				 int
-	SpeedMultiplier          float64
-	ParticleGravity 		 float64
 	MaxParticles 			 int
-	ToggleRespawn 			 bool
-	ToggleVanish			 bool
-	EventOnClick			 bool
-	ToggleRotation           bool
-	RotationSpeed		     float64
 }
 
 var General Config

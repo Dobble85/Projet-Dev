@@ -11,22 +11,12 @@ import (
 // 60 fois par seconde (de manière régulière) par la fonction principale du
 // projet.
 // C'est à vous de développer cette fonction.
+
 func (s *System) Update() {
-	l := s.Content
+	l := s.Content // On résucpère la liste de particule
 	s.Tick++
 
-	s.CursorX, s.CursorY = ebiten.CursorPosition()
-	if s.CursorX < 0 { s.CursorX = 0 }
-	if s.CursorY < 0 { s.CursorY = 0 }
-	if s.CursorX > config.General.WindowSizeX { s.CursorX = config.General.WindowSizeX }
-	if s.CursorY > config.General.WindowSizeY { s.CursorY = config.General.WindowSizeY }
-	
-	if config.General.EventOnClick {
-		s.onClick()
-	}
-
-
-	if (l.Len() < config.General.MaxParticles || config.General.MaxParticles == -1) {
+	if (l.Len() < config.General.MaxParticles || config.General.MaxParticles == -1) { // Mettre "MaxParticles" à -1 permet de pouvoir générer un nombre infini de particules
 		if config.General.SpawnRate < 1 && config.General.SpawnRate > 0 {
 			if s.Tick % int(1 / config.General.SpawnRate) == 0 {
 				s.CreateParticle()
@@ -38,38 +28,32 @@ func (s *System) Update() {
 		}
 	}
 
+	// Actualiser l'affichage du nombre de TPS toute les secondes
 	if s.Tick % 60 == 0 { ebiten.SetWindowTitle("Project particles - Paricules: " + fmt.Sprint(l.Len()) + " - TPS: " + fmt.Sprint(int(ebiten.CurrentTPS()))) }
 
 	for e := l.Front(); e != nil; e = e.Next() {
 		p := e.Value.(*Particle)
 		// Update
-		p.updateParticle()
+		p.UpdateParticle()
 
-		// KILL PARTICLES
-		p.LifeSpan--
-		if p.LifeSpan == 0 {
-			p.hideParticle()
+		// Détruir les particules
+		// Si les particules sortent de l'écran, on appel la fonction "HideParticle()" et le "KillState" de la particule passe à 1
+		if p.PositionX < -10 || p.PositionY < -10 {
+			p.HideParticle()
 			p.KillState = 1
 			continue
-		} else if p.PositionX < -20 || p.PositionY < -20 {
-			p.hideParticle()
-			p.KillState = 1
-			continue
-		} else if  int(p.PositionY) > config.General.WindowSizeY + 20 || int(p.PositionX) > config.General.WindowSizeX + 20 {
-			p.hideParticle()
+		} else if  int(p.PositionY) > config.General.WindowSizeY + 10 || int(p.PositionX) > config.General.WindowSizeX + 10 {
+			p.HideParticle()
 			p.KillState = 1
 			continue
 		}
 	}
+
+	// On parcour la liste de toutes les particules et si une à un "KillState" de 1, elle se supprime (appel de la fonction "Remove").
 	for e := l.Front(); e != nil; e = e.Next() {
 		p := e.Value.(*Particle)
 		if p.KillState == 1 {
-			if config.General.ToggleRespawn {
-				p.respawn()
-			} else {
-				l.Remove(e)
-			}
-			
+			l.Remove(e)
 		}
 	}
 }

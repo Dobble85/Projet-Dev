@@ -1,5 +1,5 @@
 package particles
 
-func (p *Particle) hideParticle() {
+func (p *Particle) HideParticle() {
 	p.Opacity = 0
 }

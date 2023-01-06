@@ -1,26 +1,7 @@
 package particles
 
-import (
-	"project-particles/config"
-)
-
-func (p *Particle) updateParticle() {
+func (p *Particle) UpdateParticle() {
+	// Ajouter une position X et Y à la position X et Y initial de la particule
 	p.PositionX += p.SpeedX
-	if config.General.ParticleGravity == 0 {
-		p.PositionY += p.SpeedY
-	} else {
-		p.PositionY += p.SpeedY
-		p.SpeedY *= config.General.ParticleGravity
-	}
-
-	if config.General.ToggleRotation {
-		p.Rotation += config.General.RotationSpeed
-	} else {
-		p.Rotation = 0
-	}
-
-	if config.General.ToggleVanish {
-		p.Opacity = float64(p.LifeSpan) / float64(config.General.LifeSpan)
-	}
-
+	p.PositionY += p.SpeedY
 }
