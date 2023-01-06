@@ -16,16 +16,14 @@ func (s *System) Update() {
 	l := s.Content // On résucpère la liste de particule
 	s.Tick++
 
-	if (l.Len() < config.General.MaxParticles || config.General.MaxParticles == -1) { // Mettre "MaxParticles" à -1 permet de pouvoir générer un nombre infini de particules
-		if config.General.SpawnRate < 1 && config.General.SpawnRate > 0 {
-			if s.Tick % int(1 / config.General.SpawnRate) == 0 {
-				s.CreateParticle()
-			}
-		} else {
-			for i := 0; i < int(config.General.SpawnRate) && (l.Len() < config.General.MaxParticles || config.General.MaxParticles == -1); i++ {
-				s.CreateParticle()
-			}
+
+	if config.General.SpawnRate < 1 && config.General.SpawnRate > 0 { // Pouvoir générer par exemple 1 particule tout les 2 ticks avec "SpawnRAte = 0.5"
+		if s.Tick % int(1 / config.General.SpawnRate) == 0 {
+			s.CreateParticle()
 		}
+	} else {
+		s.CreateParticle()
+
 	}
 
 	// Actualiser l'affichage du nombre de TPS toute les secondes

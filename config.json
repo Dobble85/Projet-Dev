@@ -6,12 +6,10 @@
 	"Debug": false,
 
 	"InitNumParticles": 0,
-	"SpawnRate": 1,
+	"SpawnRate": 10,
 
 	"RandomSpawnX": true,
 	"RandomSpawnY": true,
 	"SpawnX": 400,
-	"SpawnY": 300,
-
-	"MaxParticles": 100000000
+	"SpawnY": 300
 }
