@@ -12,7 +12,6 @@ func (s *System) CreateParticle() {
 	// Créer une variable "random" pour définir de façon aléatoire la position de la particule
 	random := rand.New(rand.NewSource(time.Now().UnixNano()))
 
-	// Définir des variables pour pouvoir définir si la position des particules en X et Y est aléatoire
 	var ParticleX int
 	var ParticleY int
 
@@ -51,10 +50,10 @@ func (s *System) CreateParticle() {
 
 	// SPEED
 
-	// Définir des varaible pour pouvoir faire en sorte que la vitesse des particules soit aléatoire
-	var ParticleSpeedX float64 = random.Float64()
+	var ParticleSpeedX float64 = random.Float64() // Générer un valeur aléatoire
 	var ParticleSpeedY float64 = random.Float64()
 
+	// Si un nombre généré est paire, inverser la vitesse de la particule
 	if random.Int() % 2 == 0 {
 		ParticleSpeedX = -ParticleSpeedX
 	}
@@ -76,15 +75,12 @@ func (s *System) CreateParticle() {
 
 	s.Content.PushFront(&Particle{
 
-		// Position en X et Y de la particule
 		PositionX: float64(ParticleX),
 		PositionY: float64(ParticleY),
 
-		// Vitesse en X et Y
 		SpeedX: ParticleSpeedX,
 		SpeedY: ParticleSpeedY,
 
-		// Angle de rotation
 		Rotation: ParticleRotation,
 
 		// Taille : 1 est la taille de base

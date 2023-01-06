@@ -33,10 +33,12 @@ func (s *System) Update() {
 
 	for e := l.Front(); e != nil; e = e.Next() {
 		p := e.Value.(*Particle)
+		
 		// Update
 		p.UpdateParticle()
 
 		// Détruir les particules
+
 		// Si les particules sortent de l'écran, on appel la fonction "HideParticle()" et le "KillState" de la particule passe à 1
 		if p.PositionX < -10 || p.PositionY < -10 {
 			p.HideParticle()
