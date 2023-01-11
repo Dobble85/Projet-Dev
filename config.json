@@ -2,7 +2,7 @@
 	"WindowTitle": "Project particles - Particules: 0 - TPS: 0",
 	"WindowSizeX": 800,
     "WindowSizeY": 600,
-	"ParticleImage": "assets/particle.png",
+	"ParticleImage": "assets/particleHalo.png",
 	"Debug": false,
 
 	"InitNumParticles": 2000,
@@ -26,5 +26,5 @@
 	"ParticleGravity": 0,
 
 	"EventOnClick": true,
-	"Preset": "img-"
+	"Preset": "img-https://media.tenor.com/mbjDoHXX-T0AAAAC/finn-the-human-adventure-time.gif"
 }

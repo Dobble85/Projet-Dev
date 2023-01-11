@@ -1,6 +1,10 @@
 package particles
 
-import "container/list"
+import (
+	"container/list"
+	"image"
+	"image/gif"
+	)
 
 // System définit un système de particules.
 // Pour le moment il ne contient qu'une liste de particules, mais cela peut
@@ -13,6 +17,10 @@ type System struct {
 	ParticleSpawnX int
 	ParticleSpawnY int
 	ParticleColor  string
+	PresetType	   string
+	PresetIndex	   int
+	img			   image.Image
+	gif			   gif.GIF
 }
 
 // Particle définit une particule.

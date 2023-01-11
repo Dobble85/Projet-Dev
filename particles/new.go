@@ -5,7 +5,7 @@ import (
 	"project-particles/config"
 	"image"
 	_ "image/jpeg"
-	_ "image/gif"
+	"image/gif"
 	"net/http"
 	"github.com/hajimehoshi/ebiten/v2"
 	"strings"
@@ -20,15 +20,28 @@ func NewSystem() System {
 	var s System
 	s.Tick = 0
 	s.Content = list.New()
+	s.PresetType = "None"
+	s.PresetIndex = 0
 
 	if config.General.Preset[:4] == "img-" {
 		url := config.General.Preset[4:]
 		response, _ := http.Get(url)
 		// Décoder l'image
-		img, _, _ := image.Decode(response.Body)
-		s.img = img
-		imgBounds := img.Bounds()
-		//strings.Contains(url, ".gif")
+
+		if strings.Contains(url, ".gif") {
+			s.PresetType = "gif"
+			gif, _ := gif.DecodeAll(response.Body)
+			s.gif = *gif
+			s.img = gif.Image[0]
+			
+		} else {
+			s.PresetType = "img"
+			img, _, _ := image.Decode(response.Body)
+			s.img = img
+		}
+		
+		imgBounds := s.img.Bounds()
+
 		config.General.WindowSizeX = imgBounds.Max.X
 		config.General.WindowSizeY = imgBounds.Max.Y
 		ebiten.SetWindowSize(imgBounds.Max.X, imgBounds.Max.Y)

@@ -2,6 +2,7 @@ package particles
 
 import (
 	"project-particles/config"
+	//"fmt"
 )
 
 func (s *System) UpdateMode() {
@@ -27,6 +28,16 @@ func (s *System) UpdateMode() {
 		}
 
 	case len(mode) > 4 && mode[:4] == "img-":
+		//fmt.Println(s.gif.Delay[s.PresetIndex])
+		if s.PresetType == "gif" && s.Tick % (s.gif.Delay[s.PresetIndex]) == 0 {
+			//fmt.Println(s.PresetIndex)
+			if s.PresetIndex == len(s.gif.Image)-1 {
+				s.PresetIndex = 0
+			} else {
+				s.PresetIndex++
+			}
+			s.img = s.gif.Image[s.PresetIndex]
+		}
 		for e := s.Content.Front(); e != nil; e = e.Next() {
 			p := e.Value.(*Particle)
 			// Récupérer les valeurs RGB de la couleur
