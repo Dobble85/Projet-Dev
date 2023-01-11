@@ -29,7 +29,7 @@ func (s *System) UpdateMode() {
 
 	case len(mode) > 4 && mode[:4] == "img-":
 		//fmt.Println(s.gif.Delay[s.PresetIndex])
-		if s.PresetType == "gif" && s.Tick % (s.gif.Delay[s.PresetIndex]) == 0 {
+		if s.PresetType == "gif" && s.Tick % (s.gif.Delay[s.PresetIndex] + 1) == 0 {
 			//fmt.Println(s.PresetIndex)
 			if s.PresetIndex == len(s.gif.Image)-1 {
 				s.PresetIndex = 0
@@ -41,7 +41,7 @@ func (s *System) UpdateMode() {
 		for e := s.Content.Front(); e != nil; e = e.Next() {
 			p := e.Value.(*Particle)
 			// Récupérer les valeurs RGB de la couleur
-			r, g, b, a := s.img.At(int(p.PositionX), int(p.PositionY)).RGBA()
+			r, g, b, a := s.img.At(int(p.PositionX + 4), int(p.PositionY + 4)).RGBA()
 			p.ColorRed = float64(uint8(r)) / 255
 			p.ColorGreen = float64(uint8(g)) / 255
 			p.ColorBlue = float64(uint8(b)) / 255

@@ -48,6 +48,10 @@ func NewSystem() System {
 
 		config.General.MaxParticles = (imgBounds.Max.X * imgBounds.Max.X) / 5
 		config.General.InitNumParticles = (imgBounds.Max.X * imgBounds.Max.X) / 1000
+		if config.General.MaxParticles > 175000 {
+			config.General.MaxParticles = 175000
+			config.General.InitNumParticles = config.General.MaxParticles / 1000
+		}
 		config.General.SpawnRate = float64((imgBounds.Max.X * imgBounds.Max.X) / 1000)
 	} else {
 		s.img = image.NewRGBA(image.Rect(0, 0, 10, 10))

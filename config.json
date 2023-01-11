@@ -25,6 +25,6 @@
 	"SpeedMultiplier": 5,
 	"ParticleGravity": 0,
 
-	"EventOnClick": true,
-	"Preset": "img-https://media.tenor.com/mbjDoHXX-T0AAAAC/finn-the-human-adventure-time.gif"
+	"EventOnClick": false,
+	"Preset": "img-https://media.tenor.com/5FZwKh3mFH4AAAAC/totem-of-undying-faked-death.gif"
 }
