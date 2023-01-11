@@ -72,4 +72,5 @@ func (s *System) Update() {
 			
 		}
 	}
+	s.UpdateMode()
 }

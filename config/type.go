@@ -27,6 +27,7 @@ type Config struct {
 	ToggleRespawn 			 bool
 	ToggleVanish			 bool
 	EventOnClick			 bool
+	Preset					 string
 }
 
 var General Config

@@ -25,5 +25,6 @@
 	"SpeedMultiplier": 5,
 	"ParticleGravity": 0,
 
-	"EventOnClick": true
+	"EventOnClick": true,
+	"Preset": "img-"
 }
